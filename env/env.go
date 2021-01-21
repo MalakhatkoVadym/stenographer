@@ -135,9 +135,7 @@ func New(c config.Config) (_ *Env, returnedErr error) {
 // args is the set of command line arguments to pass to stentype.
 func (d *Env) args() []string {
 	res := append(d.conf.Flags,
-		fmt.Sprintf("--threads=%d", len(d.conf.Threads)),
-		fmt.Sprintf("--dir=%s", d.Path()))
-
+		fmt.Sprintf("--threads=%d", len(d.conf.Threads)))
 	if len(d.conf.Interface) > 0 {
 		res = append(res, fmt.Sprintf("--iface=%s", d.conf.Interface))
 	}
