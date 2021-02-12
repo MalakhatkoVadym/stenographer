@@ -512,6 +512,7 @@ void RunThread(int thread, st::ProducerConsumerQueue* write_index,
     Block b;
     CHECK_SUCCESS(v3->NextBlock(&b, kNumMillisPerSecond));
     if (b.Empty()) {
+      dog.Feed();
       continue;
     }
 
