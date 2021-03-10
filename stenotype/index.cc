@@ -259,7 +259,7 @@ Error Index::Flush() {
   std::string filename = HiddenFile(dirname_, micros_);
   auto status = leveldb::Env::Default()->NewWritableFile(filename, &file);
   if (!status.ok()) {
-    return ERROR("could not open '" + filename + "': " + status.ToString());
+    return ERROR("could not open '" + filename);
   }
   std::unique_ptr<leveldb::WritableFile> cleaner(file);
 
@@ -314,12 +314,11 @@ Error Index::WriteTo(leveldb::WritableFile* file) {
 
   auto finished = index_ss.Finish();
   if (!finished.ok()) {
-    return ERROR("could not finish writing index table: " +
-                 finished.ToString());
+    return ERROR("could not finish writing index table");
   }
   auto closed = file->Close();
   if (!closed.ok()) {
-    return ERROR("could not close index table: " + closed.ToString());
+    return ERROR("could not close index table");
   }
   return SUCCESS;
 }
